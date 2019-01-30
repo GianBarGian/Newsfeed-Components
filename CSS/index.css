@@ -108,6 +108,19 @@
 .article-close {
   display: none;
 }
+.newArticle h2 {
+  text-align: center;
+}
+.newArticle form {
+  margin: 0 auto;
+  padding-top: 45px;
+  width: 100%;
+}
+.newArticle label {
+  display: inline-block;
+  width: 90px;
+  text-align: right;
+}
 html,
 body {
   margin: 0;

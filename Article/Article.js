@@ -1,8 +1,4 @@
-// Because classes are not hoised you will need to start your code at the bottom of the page.  Look for the comment "START HERE"
-// assign this.domElement to the passed in domElement
-// create a reference to the ".expandButton" class. 
-// Using your expandButton reference, update the text on your expandButton to say "expand"
-// Set a click handler on the expandButton reference, calling the expandArticle method.
+
 
 class Article {
   constructor(domElement) {
@@ -16,7 +12,6 @@ class Article {
   }
 
   expandArticle() {
-    // Using our reference to the domElement, toggle a class to expand or hide the article.
     this.domElement.classList.toggle('article-open');
   }
 
@@ -25,13 +20,48 @@ class Article {
   }
 }
 
-/* START HERE: 
-- Select all classes named ".article" and assign that value to the articles variable.  
-- With your selection in place, now chain .forEach() on to the articles variable 
-  to iterate over the articles NodeList and create a new instance of Article by 
-  passing in each article as a parameter to the constructor.
-*/
 
+const button = document.querySelector('button');
+const articlesClass = document.querySelector('.articles')
 let articles = document.querySelectorAll('.article');
 
 articles.forEach(article => new Article(article));
+
+//New article functionality
+
+function addArticle() {    // I create the new DOM Object with the new values
+  const userTitle = document.querySelector('#title').value;
+  const userContent = document.querySelector('#content').value;
+  this.date = new Date();
+
+  const newArticle = document.createElement('div');
+  const newh2 = document.createElement('h2');
+  const newClose = document.createElement('span');
+  const newdate = document.createElement('p');
+  const newContent = document.createElement('p');
+  const newExpand = document.createElement('span');
+
+  newArticle.classList.add('article');
+  newh2.textContent = userTitle;
+  newClose.classList.add('close');
+  newClose.textContent = 'close';
+  newdate.classList.add('date')
+  newdate.textContent = this.date;
+  newContent.textContent = userContent;
+  newExpand.classList.add('expandButton');
+
+  newArticle.appendChild(newh2);
+  newArticle.appendChild(newClose);
+  newArticle.appendChild(newdate);
+  newArticle.appendChild(newContent);
+  newArticle.appendChild(newExpand);
+
+  return newArticle;
+}
+
+button.addEventListener('click', (event) => { // The user trigger the data input and the new render with just one click
+  event.preventDefault();
+  articlesClass.appendChild(addArticle()); // Here it appendes the new DOM Object as the last element of .articles
+  new Article(articlesClass.lastChild); // and here it construct the new Article
+})
+
