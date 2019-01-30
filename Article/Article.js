@@ -8,15 +8,20 @@ class Article {
   constructor(domElement) {
     this.domElement = domElement;
     this.expandButton = this.domElement.querySelector('.expandButton');
-    this.content = this.domElement.querySelectorAll('p');
+    this.closeButton = this.domElement.querySelector('.close');
     
     this.expandButton.textContent = 'expand';
     this.expandButton.addEventListener('click', () => this.expandArticle());
+    this.closeButton.addEventListener('click', () => this.closeArticle());
   }
 
   expandArticle() {
     // Using our reference to the domElement, toggle a class to expand or hide the article.
     this.domElement.classList.toggle('article-open');
+  }
+
+  closeArticle() {
+    this.domElement.classList.add('article-close');
   }
 }
 
